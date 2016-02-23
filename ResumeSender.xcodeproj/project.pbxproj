@@ -11,7 +11,10 @@
 		BF50EF261C7CEA1B0079590F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF50EF241C7CEA1B0079590F /* Main.storyboard */; };
 		BF50EF281C7CEA1B0079590F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF50EF271C7CEA1B0079590F /* Assets.xcassets */; };
 		BF50EF2B1C7CEA1B0079590F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF50EF291C7CEA1B0079590F /* LaunchScreen.storyboard */; };
-		BF50EF371C7CEE650079590F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF50EF341C7CEE650079590F /* ViewController.swift */; };
+		BF50EF371C7CEE650079590F /* SenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF50EF341C7CEE650079590F /* SenderViewController.swift */; };
+		BF50EF3B1C7CEEE50079590F /* SenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF50EF3A1C7CEEE50079590F /* SenderView.swift */; };
+		BF50EF3D1C7CEEF00079590F /* SenderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF50EF3C1C7CEEF00079590F /* SenderView.xib */; };
+		BF50EF3F1C7CF0590079590F /* SenderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF50EF3E1C7CF0590079590F /* SenderViewModel.swift */; };
 		F8DE189D0A46F9C4F5C34CC0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839BF389D230BC00C704AE9A /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,7 +28,10 @@
 		BF50EF271C7CEA1B0079590F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF50EF2A1C7CEA1B0079590F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF50EF2C1C7CEA1B0079590F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BF50EF341C7CEE650079590F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BF50EF341C7CEE650079590F /* SenderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SenderViewController.swift; sourceTree = "<group>"; };
+		BF50EF3A1C7CEEE50079590F /* SenderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SenderView.swift; sourceTree = "<group>"; };
+		BF50EF3C1C7CEEF00079590F /* SenderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SenderView.xib; sourceTree = "<group>"; };
+		BF50EF3E1C7CF0590079590F /* SenderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SenderViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +107,7 @@
 		BF50EF331C7CEE650079590F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				BF50EF341C7CEE650079590F /* ViewController.swift */,
+				BF50EF341C7CEE650079590F /* SenderViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -109,6 +115,7 @@
 		BF50EF351C7CEE650079590F /* View Models */ = {
 			isa = PBXGroup;
 			children = (
+				BF50EF3E1C7CF0590079590F /* SenderViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -116,6 +123,8 @@
 		BF50EF361C7CEE650079590F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BF50EF3A1C7CEEE50079590F /* SenderView.swift */,
+				BF50EF3C1C7CEEF00079590F /* SenderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,6 +193,7 @@
 				BF50EF2B1C7CEA1B0079590F /* LaunchScreen.storyboard in Resources */,
 				BF50EF281C7CEA1B0079590F /* Assets.xcassets in Resources */,
 				BF50EF261C7CEA1B0079590F /* Main.storyboard in Resources */,
+				BF50EF3D1C7CEEF00079590F /* SenderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +252,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF50EF371C7CEE650079590F /* ViewController.swift in Sources */,
+				BF50EF371C7CEE650079590F /* SenderViewController.swift in Sources */,
+				BF50EF3F1C7CF0590079590F /* SenderViewModel.swift in Sources */,
+				BF50EF3B1C7CEEE50079590F /* SenderView.swift in Sources */,
 				BF50EF211C7CEA1B0079590F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
