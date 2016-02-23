@@ -11,14 +11,14 @@ import UIKit
 class SenderView: UIView {
     
     var view: UIView!
-
-    // MARK: - Outlets
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var sendButton: UIButton!
     
     // MARK: - Properties
     var keyboardHeight: CGFloat!
     var keyboardIsVisible = false
+
+    // MARK: - Outlets
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var sendButton: UIButton!
     
     // MARK: - View Ownership
     required init(coder aDecoder: NSCoder) {
@@ -48,39 +48,6 @@ class SenderView: UIView {
         xibSetup()
     }
     
-    
-    // MARK: - Keyboard Notification Center
-    func keyboardSetup() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
-    }
-    
-    func keyboardWillShow(notification: NSNotification) {
-        if !keyboardIsVisible {
-            if let userInfo = notification.userInfo {
-                if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-                    keyboardHeight = keyboardSize.height * 0.85
-                    self.animateTextField(true)
-                    self.keyboardIsVisible = true
-                }
-            }
-        }
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-                keyboardHeight = keyboardSize.height * 0.85
-                self.animateTextField(false)
-                self.keyboardIsVisible = false
-            }
-        }
-    }
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
     // MARK: - Animations + Transitions
     func showSendButton() {
         sendButton.hidden = false
@@ -97,7 +64,19 @@ class SenderView: UIView {
         })
     }
     
-    func animateTextField(up: Bool) {
+    func animateShow(keyboardSize: CGRect) {
+        keyboardHeight = keyboardSize.height * 0.85
+        animateTextField(true)
+        keyboardIsVisible = true
+    }
+    
+    func animateHide(keyboardSize: CGRect) {
+        keyboardHeight = keyboardSize.height * 0.85
+        animateTextField(false)
+        keyboardIsVisible = false
+    }
+    
+    private func animateTextField(up: Bool) {
         let movement = (up ? -keyboardHeight : keyboardHeight)
         UIView.animateWithDuration(0.3, animations: {
             self.view.frame = CGRectOffset(self.view.frame, 0, movement/2)

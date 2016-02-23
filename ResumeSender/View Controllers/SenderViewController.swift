@@ -15,6 +15,8 @@ class SenderViewController: UIViewController {
     
     // Mark: - Properties
     @IBOutlet weak var mainView: SenderView!
+    let viewModel = SenderViewModel()
+    
     let emailSendAlert = UIAlertController(title: "", message: "", preferredStyle: .Alert)
     let disposeBag = DisposeBag()
 
@@ -37,13 +39,15 @@ class SenderViewController: UIViewController {
     
     // Mark: - Helper Functions
     private func setup() {
-        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: mainView, action: "dismissKeyboard:")
+        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard:")
         self.mainView.addGestureRecognizer(dismiss)
         
         mainView.sendButton.addTarget(self, action: "sendButtonPressed:", forControlEvents: .TouchUpInside)
         emailSendAlert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
         
         configureSearchBar()
+        
+        keyboardSetup()
     }
     
     private func configureSearchBar() {
@@ -101,8 +105,40 @@ class SenderViewController: UIViewController {
     
     // Mark: - Actions
     func sendButtonPressed(sender: UIButton) {
-        mainView.dismissKeyboard()
+        self.dismissKeyboard()
         showEmail(mainView.emailField.text!)
+    }
+    
+    // MARK: - Keyboard Notification Center
+    func keyboardSetup() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if !mainView.keyboardIsVisible {
+            if let userInfo = notification.userInfo {
+                if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+                    mainView.animateShow(keyboardSize)
+                }
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+                mainView.animateHide(keyboardSize)
+            }
+        }
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func dismissKeyboard(sender: AnyObject) {
+        view.endEditing(true)
     }
 
 
